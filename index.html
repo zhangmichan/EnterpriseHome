@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>张米婵</title>
+    <link rel="short icon" href="Resource/icon.png">
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .L_head_div {
+            text-align: center;
+        }
+
+        .L_head_div img {
+            margin-top: 50px;
+        }
+
+        .L_form_div {
+            text-align: center;
+        }
+
+        .L_form_inner_div {
+            width: 90%;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            background: white;
+            margin: 30px auto 0;
+            height: 100px;
+        }
+
+        .L_form_inner_div div {
+            line-height: 50px;
+            text-align: left;
+            padding-left: 15px;
+            font-size: 20px;
+        }
+
+        .L_login_div {
+            text-align: center;
+        }
+
+        .L_login_div input {
+            line-height: 50px;
+            height: 50px;
+            color: white;
+            font-size: 20px;
+            width: 90%;
+            background: #205aa3;
+            margin-top: 10px;
+            border-radius: 5px;
+
+            /*font-size: 100px;*/
+        }
+
+        input {
+            font-size: 20px;
+            outline: medium transparent;
+            border: 0;
+        }
+    </style>
+
+</head>
+<body>
+<header>
+    <span>登录</span>
+</header>
+
+<div class="L_head_div">
+    <img src="Resource/head.png" alt="">
+</div>
+
+<form action="">
+    <div class="L_form_div">
+        <div class="L_form_inner_div">
+            <div style="border-bottom: 1px solid #dddddd">
+                <span>账号名:</span>
+                <label for="i_account"></label><input id="i_account" type="text"><br>
+            </div>
+            <div style="line-height: 50px">
+                <span>密码:</span>
+                <label for="i_pwd"></label><input id="i_pwd" type="password"><br>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="L_login_div">
+            <input id="i_btn" type="button" value="登录">
+        </div>
+    </div>
+
+</form>
+
+<script src="js/MyRequest.js"></script>
+<script>
+    const i_btn = document.getElementById('i_btn');
+    i_btn.onclick = function () {
+        // 获取数据
+        var username = document.querySelector('#i_account').value;
+        var pwd = document.querySelector('#i_pwd').value;
+
+        // 调用
+        var par = "username=" + username + "&pwd=" + pwd;
+        var mRequest = new MyRequest('post', 'https://mockapi.eolinker.com/2ZhGVxjacb39010e6753bd9c02ee803e6e3bfeab6e8007c/login', par, (xhr) => {
+            var resp = JSON.parse(xhr.responseText);
+            var str = resp.data;
+            if (str === '登录成功') {
+                location.href = 'DropletService.html';
+            }
+        });
+        mRequest.send();
+
+    };
+
+
+</script>
+</body>
+</html>
+

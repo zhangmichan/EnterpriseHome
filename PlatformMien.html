@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>张米婵</title>
+    <link rel="short icon" href="Resource/icon.png">
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+
+        article h3 {
+            color: red;
+            border-bottom: 1px solid #dddddd;
+            margin: 10px;
+            padding-bottom: 10px;
+        }
+
+        article h4 {
+            margin: 10px;
+        }
+
+        article p {
+            font-size: 12px;
+            text-indent: 2em;
+            line-height: 2em;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <span>平台风采</span>
+</header>
+
+<section>
+    <img class="banner" src="Resource/banner4.png" alt="">
+</section>
+
+<article>
+    <h3 id="title"></h3>
+    <h4 id="subTitle"></h4>
+
+    <p id="info"></p>
+    <script src="js/MyRequest.js"></script>
+    <script>
+        var title = document.querySelector('#title');
+        var subTitle = document.querySelector('#subTitle');
+        var info = document.querySelector('#info');
+
+        var mRequest = new MyRequest('get', 'https://mockapi.eolinker.com/2ZhGVxjacb39010e6753bd9c02ee803e6e3bfeab6e8007c/aboutus', '', (xhr) => {
+            var resp = JSON.parse(xhr.responseText);
+            var data = resp.data;
+            title.innerHTML = data.title;
+            subTitle.innerHTML = data.subTitle;
+            info.innerHTML = data.info;
+        });
+        mRequest.send();
+
+    </script>
+</article>
+
+<footer>
+    <a href="DropletService.html"><img src="Resource/nav10.png" alt=""> <span> 小滴服务 </span></a>
+    <a href="BusinessProjectDiamond.html"><img src="Resource/nav20.png" alt=""> <span> 企业项目 </span></a>
+    <a href="ServiceProcess.html"><img src="Resource/nav30.png" alt=""> <span> 服务流程 </span></a>
+    <a href=""><img src="Resource/nav41.png" alt=""> <span style="color: red"> 平台风采 </span></a>
+    <a href="MyDroplet.html"><img src="Resource/nav50.png" alt=""> <span> 我的小滴 </span></a>
+</footer>
+
+</body>
+</html>
